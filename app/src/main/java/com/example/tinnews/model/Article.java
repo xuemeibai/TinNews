@@ -1,14 +1,23 @@
 package com.example.tinnews.model;
 
-import java.util.Objects;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+import java.util.Objects;
+@Entity
 public class Article {
-    public Source source;
+
     public String author;
     public String content;
     public String description;
     public String publishedAt;
     public String title;
+
+
+  @NonNull
+  @PrimaryKey
+
     public String url;
     public String urlToImage;
 
@@ -17,7 +26,7 @@ public class Article {
         if (this == o) return true;
         if (!(o instanceof Article)) return false;
         Article article = (Article) o;
-        return Objects.equals(source, article.source) &&
+        return
                 Objects.equals(author, article.author) &&
                 Objects.equals(content, article.content) &&
                 Objects.equals(description, article.description) &&
@@ -29,14 +38,14 @@ public class Article {
 
     @Override
     public int hashCode() {
-        return Objects.hash(source, author, content, description, publishedAt, title, url, urlToImage);
+        return Objects.hash(author, content, description, publishedAt, title, url, urlToImage);
     }
 
     @Override
     public String toString() {
         return "Article{" +
-                "source=" + source +
-                ", author='" + author + '\'' +
+
+                " author='" + author + '\'' +
                 ", content='" + content + '\'' +
                 ", description='" + description + '\'' +
                 ", publishedAt='" + publishedAt + '\'' +
