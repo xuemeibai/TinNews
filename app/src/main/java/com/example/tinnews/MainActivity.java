@@ -6,6 +6,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 
+import com.example.tinnews.network.NewsApi;
+import com.example.tinnews.network.RetrofitClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(navView, navController);
-        NavigationUI.setupActionBarWithNavController(this, navController);
+        NewsApi api = RetrofitClient.newInstance(this).create(NewsApi.class);
 
 
     }

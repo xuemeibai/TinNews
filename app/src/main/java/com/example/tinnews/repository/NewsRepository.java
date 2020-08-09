@@ -13,6 +13,8 @@ import com.example.tinnews.model.NewsResponse;
 import com.example.tinnews.network.NewsApi;
 import com.example.tinnews.network.RetrofitClient;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,10 +71,18 @@ public class NewsRepository {
         return everyThingLiveData;
     }
 
+
     public LiveData<Boolean> favoriteArticle(Article article) {
         MutableLiveData<Boolean> resultLiveData = new MutableLiveData<>();
         new FavoriteAsyncTask(database, resultLiveData).execute(article);
         return resultLiveData;
+    }
+    public LiveData<List<Article>> getAllSavedArticles() {
+        return database.dao().getAllArticles();
+    }
+
+    public void deleteSavedArticle(Article article) {
+        AsyncTask.execute(() -> database.dao().deleteArticle(article));
     }
 
     private static class FavoriteAsyncTask extends AsyncTask<Article, Void, Boolean> {
